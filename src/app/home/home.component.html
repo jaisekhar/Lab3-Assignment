@@ -1,36 +1,38 @@
-<div *ngIf="currentuser()=='true'">
-  dashboard works!<br>
-<h1>Hello {{dName}}</h1>
+<div *ngIf="currentuser()=='true'" >
+  <nav class="navbar navbar-dark bg-transparent">
+    <h2 class="navbar-brand" style="color: #ffffff;"><b>Recipify</b></h2>
+    <form class="form-inline">
+      <button class="btn btn-outline-light my-2 my-sm-0" type="submit" (click)="logout()">Logout</button>
+    </form>
+  </nav>
 <!--  Start-->
   <div class="parent-container">
     <div class="child-container">
-      <h2><b>Search for your recipe!!
-      </b></h2><br>
+      <h2 align="center">Welcome, <b>{{dName}}</b></h2>
+<br>
       <form>
-        <div class="form-group">
+        <h3>Search for your favourite food!!</h3><br>
+        <div class="form-group" align="center">
           <div class="form-group col-lg-6 col-lg-offset-3 input-group">
-            <input type="text" class="form-control" placeholder="Recipe name" #recipe>
-            <span class="input-group-addon">-</span>
-            <input type="text" class="form-control" placeholder="Place" #place>
-            <span class="input-group-addon">-</span>
-
-          </div><br>
-          <button type="button" class="btn btn primary col-lg-2 col-lg-offset-5 " (click)="getVenues()">Go</button>
+            <input type="text" class="form-control" placeholder="Enter Food Name" #recipe>&nbsp;
+            <input type="text" class="form-control" placeholder="Enter your Place" #place>
+          </div>
+          <button type="button" class="btn btn-light" (click)="getVenues()">Search</button>
 
         </div>
       </form>
     </div>
   </div><br><br>
-  <div class="container">
+  <div class="container" *ngIf="calories!=null">
     <div class="row">
-      <div class="col-lg-6">
-        <div class="panel panel-default col-6">
-          <div class="panel-heading"><b>How to make</b></div>
+      <div class="col-lg-4" align="center">
+        <div class="panel panel-default">
+          <div class="panel-heading" style="color:white"><b>Online Recipe's:</b></div>
           <div class="panel-body">
             <div *ngFor="let recipe of recipeList" class="list-group-item clearfix">
               <div class="pull-left">
-                <h4 class="list-group-item-heading">{{ recipe.name }}</h4>
-                <a href="{{recipe.url}}" class="list-group-item-text">{{ recipe.url }}</a>
+                <h5 class="list-group-item-heading">{{ recipe.name }}</h5>
+                <a href="{{recipe.url}}" class="list-group-item-text">Visit</a>
               </div>
 
               <span class="pull-right">
@@ -43,14 +45,14 @@
           </div>
         </div>
       </div>
-      <div class="col-lg-6">
-        <div class="panel panel-default col-6">
-          <div class="panel-heading"><b>Where to get</b></div>
+      <div class="col-lg-4" align="center">
+        <div class="panel panel-default">
+          <div class="panel-heading" style="color:white"><b>Nearby Stores:</b></div>
           <div class="panel-body">
 
             <div *ngFor="let venue of venueList" class="list-group-item clearfix">
               <div class="pull-left">
-                <h4 class="list-group-item-heading">{{ venue.name }}</h4>
+                <h5 class="list-group-item-heading">{{ venue.name }}</h5>
               </div>
 
               <span class="pull-right">
@@ -66,9 +68,9 @@
         </div>
       </div>
 
-      <div class="col-lg-6">
-        <div class="panel panel-default col-6">
-          <div class="panel-heading"><b>Nutrition</b></div>
+      <div class="col-lg-4" align="center">
+        <div class="panel panel-default">
+          <div class="panel-heading" style="color:white;"><b>Nutrition:</b></div>
           <div class="panel-body">
             <div *ngIf="calories != null" class="list-group-item clearfix">
               <div class="pull-left">
@@ -83,12 +85,12 @@
     </div>
   </div>
 
-
+</div>
 
 
 <!--  //End-->
-<button (click)="logout()">Logout</button>
-</div>
+<!--<button (click)="logout()">Logout</button>-->
+<!--</div>-->
 
 <div *ngIf="currentuser()!='true'">
 {{loginr()}};

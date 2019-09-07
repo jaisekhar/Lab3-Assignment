@@ -1,7 +1,7 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
-import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import {HttpClient} from '@angular/common/http';
+declare const responsiveVoice;
 
 @Component({
   selector: 'app-home',
@@ -58,7 +58,6 @@ export class HomeComponent implements OnInit{
   }
 
   getVenues() {
-
     this.recipeValue = this.recipes.nativeElement.value;
     this.placeValue = this.places.nativeElement.value;
 
@@ -105,8 +104,11 @@ export class HomeComponent implements OnInit{
           this.calories = data.hits[0].fields.nf_calories;
           this.weight = data.hits[0].fields.nf_serving_weight_grams;
           console.log(data);
+          // tslint:disable-next-line:max-line-length
+          responsiveVoice.speak(this.recipeValue + ' contains ' + this.calories + ' calories in ' + this.weight + ' grams', 'UK English Male');
         });
     }
+
 
 
   }
